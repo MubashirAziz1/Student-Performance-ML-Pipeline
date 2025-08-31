@@ -16,7 +16,7 @@ def index():
 def predict_datapoint():
     if request.method == 'GET':
         return render_template('home.html')
-    else:
+    else:                                  
         data = CustomData(
             gender=request.form.get('gender'),
             race_ethnicity=request.form.get('ethnicity'),
