@@ -12,6 +12,7 @@ from src.exception import CustomException
 from src.logger import logging
 from src.utils import save_object
 
+
 @dataclass
 class DataTransformationConfig:
     preprocessor_obj_file_path = os.path.join('artifacts' , 'preprocessor.pkl')
@@ -90,6 +91,7 @@ class DataTransformation:
                 input_feature_train_arr , np.array(target_feature_train_df)
             ]
 
+
             test_arr = np.c_[input_feature_test_arr , np.array(target_feature_test_df)]
 
             logging.info(f"Saved preprocessin object.")
@@ -98,6 +100,7 @@ class DataTransformation:
                 file_path = self.data_transformation_config.preprocessor_obj_file_path,
                 obj = preprocessing_obj
             )
+            
 
             return (train_arr , test_arr , self.data_transformation_config.preprocessor_obj_file_path)
         
