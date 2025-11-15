@@ -175,3 +175,8 @@ cython_debug/
 .pypirc
 catboost_info/
 
+#MLFLow
+mlruns/
+
+remaining_work.txt
+

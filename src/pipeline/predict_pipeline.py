@@ -1,7 +1,14 @@
 import sys
 import pandas as pd
+import os
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '../..'))
+sys.path.append(project_root)
+
 from src.exception import CustomException
 from src.utils import load_object
+import mlflow
+
+
 
 class PredictPipeline():
     def __init__(self):
@@ -9,9 +16,11 @@ class PredictPipeline():
 
     def predict(self , features):
         try:    
-            model_path = 'artifacts\model.pkl'
+            model = mlflow.sklearn.load_model("models:/Best_Optimized_R2_metric/latest")
+
+            #model_path = 'artifacts\model.pkl'
             preprocessor_path = 'artifacts\preprocessor.pkl'
-            model = load_object(file_path = model_path)
+            #model = load_object(file_path = model_path)
             preprocessor = load_object(file_path = preprocessor_path)
             data_scaled = preprocessor.transform(features)
             preds = model.predict(data_scaled)
