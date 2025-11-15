@@ -1,6 +1,8 @@
 import os
 import sys
 from dataclasses import dataclass
+import mlflow
+import mlflow.sklearn
 
 from catboost import CatBoostRegressor
 from sklearn.ensemble import (
@@ -37,6 +39,7 @@ class ModelTrainer:
                 test_array[:,:-1],
                 test_array[:,-1]
             )
+            mlflow.set_experiment('Student Performance Predictor')
             models = {
                 "Random Forest": RandomForestRegressor(),
                 "Decision Tree": DecisionTreeRegressor(),
